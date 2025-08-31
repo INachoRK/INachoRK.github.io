@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ALQUIPC · Facturación</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>ALQUIPC · Calculadora de Alquiler</h1>
+  </header>
+
+  <main class="container grid">
+    <section class="card">
+      <h2>Datos del cliente y alquiler</h2>
+      <form id="alquilerForm">
+        <div class="row">
+          <label for="cliente">Nombre del cliente</label>
+          <input id="cliente" name="cliente" type="text" placeholder="Ej: Ignacio Patiño Calle" required />
+        </div>
+        <div class="row">
+          <label for="correo">Correo del cliente</label>
+          <input id="correo" name="correo" type="email" placeholder="ejemplo@correo.com" required />
+        </div>
+
+        <div class="row">
+          <label for="ubicacion">Ubicación del alquiler</label>
+          <select id="ubicacion" name="ubicacion" required>
+            <option value="ciudad">Dentro de la ciudad (sin cargo)</option>
+            <option value="fuera">Fuera de la ciudad (+5% domicilio)</option>
+            <option value="establecimiento">Dentro del establecimiento (-5% desc.)</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label for="equipos">Cantidad de equipos</label>
+          <input id="equipos" name="equipos" type="number" min="2" step="1" value="2" required />
+          <small class="hint">Mínimo 2 equipos.</small>
+        </div>
+
+        <div class="row two">
+          <div>
+            <label for="diasIniciales">Días iniciales</label>
+            <input id="diasIniciales" name="diasIniciales" type="number" min="1" step="1" value="1" required />
+          </div>
+          <div>
+            <label for="diasAdicionales">Días adicionales</label>
+            <input id="diasAdicionales" name="diasAdicionales" type="number" min="0" step="1" value="0" />
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Tarifa por equipo / día</label>
+          <output id="tarifa">$35.000</output>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary">Calcular</button>
+          <button type="reset" id="btnLimpiar" class="ghost">Limpiar</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="resultado" class="card hidden" aria-live="polite">
+      <h2>Resumen / Factura</h2>
+      <div class="meta">
+        <div><strong>Fecha:</strong> <span id="fecha"></span></div>
+      </div>
+
+      <table class="tabla">
+        <tbody>
+          <tr><th>Equipos</th><td id="rEquipos"></td></tr>
+          <tr><th>Días iniciales</th><td id="rDiasIniciales"></td></tr>
+          <tr><th>Días adicionales</th><td id="rDiasAdicionales"></td></tr>
+          <tr><th>Ubicación</th><td id="rUbicacion"></td></tr>
+          <tr class="sep"><th colspan="2">Detalle de costos</th></tr>
+          <tr><th>Base (iniciales)</th><td id="rCostoInicial"></td></tr>
+          <tr><th>Base (adicionales)</th><td id="rCostoAdicional"></td></tr>
+          <tr><th>Descuento por adicionales</th><td id="rDescAdic"></td></tr>
+          <tr><th>Subtotal</th><td id="rSubtotal"></td></tr>
+          <tr><th>Ajuste por ubicación</th><td id="rAjusteUbic"></td></tr>
+          <tr class="total"><th>Total a pagar</th><td id="rTotal"></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
